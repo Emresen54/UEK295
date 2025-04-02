@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: product_manager
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mariadb-admin", "-u", "root", "-p123", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8081:8080"
+
+  app:
+    image: maven:3.8.6-eclipse-temurin-17
+    command: mvn spring-boot:run
+    volumes:
+      - ./:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/product_manager
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
