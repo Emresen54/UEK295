@@ -7,7 +7,7 @@
 | 1°  | `admin`  | `admin123` | ADMIN  |
 | 2°  | `user`   | `123`      | USER   |
 
----
+
 
 ## How to Start the Project
 
@@ -26,7 +26,7 @@ This will:
 - Start the **Adminer database viewer** on `http://localhost:8081`
 - Create the default users automatically if the database is empty
 
----
+
 
 ##  How to Access Everything
 
@@ -38,7 +38,7 @@ Open your browser and go to:
 
 This is the backend. You can test it using Postman or Swagger.
 
----
+
 
 ### 2. API Documentation (Swagger UI)
 
@@ -51,7 +51,7 @@ Example:
 - Copy the token
 - Click “Authorize” and paste it to unlock secured routes
 
----
+
 
 ### 3. Adminer – Database GUI
 
